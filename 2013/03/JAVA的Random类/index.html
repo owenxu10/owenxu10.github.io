@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+<title>JAVA的Random类 - 崇山俊岭</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="Random类 (java.util)Random类中实现的随机算法是伪随机，也就是有规则的随机。在进行随机时，随机算法的起源数字称为种子数(seed)，在种子数的基础上进行一定的变换，从而产生需要的随机数字。相同种子数的Random对象，相同次数生成的随机数字是完全相同的。也就是说，两个种子数相同的Random对象，第一次生成的随机数字完全相同，第二次生成的随机数字也完全相同。这点在生成多个随机">
+<meta name="keywords" content="JAVA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA的Random类">
+<meta property="og:url" content="http://owenxu10.github.io/2013/03/JAVA的Random类/index.html">
+<meta property="og:site_name" content="崇山俊岭">
+<meta property="og:description" content="Random类 (java.util)Random类中实现的随机算法是伪随机，也就是有规则的随机。在进行随机时，随机算法的起源数字称为种子数(seed)，在种子数的基础上进行一定的变换，从而产生需要的随机数字。相同种子数的Random对象，相同次数生成的随机数字是完全相同的。也就是说，两个种子数相同的Random对象，第一次生成的随机数字完全相同，第二次生成的随机数字也完全相同。这点在生成多个随机">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-18T14:32:18.989Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVA的Random类">
+<meta name="twitter:description" content="Random类 (java.util)Random类中实现的随机算法是伪随机，也就是有规则的随机。在进行随机时，随机算法的起源数字称为种子数(seed)，在种子数的基础上进行一定的变换，从而产生需要的随机数字。相同种子数的Random对象，相同次数生成的随机数字是完全相同的。也就是说，两个种子数相同的Random对象，第一次生成的随机数字完全相同，第二次生成的随机数字也完全相同。这点在生成多个随机">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/myLogo.png" alt="JAVA的Random类" height="30">
+               &nbsp&nbsp <p class="title is-4">崇山峻岭</p>
+
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2013-03-12T15:48:58.000Z">03-12-2013</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/About-Study/">About Study</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    14 minutes read (About 2095 words)
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                JAVA的Random类
+            
+        </h1>
+        <div class="content">
+            <h1 id="Random类-java-util"><a href="#Random类-java-util" class="headerlink" title="Random类 (java.util)"></a>Random类 (java.util)</h1><div><br><div id="cnblogs_post_body"><br><br>Random类中实现的随机算法是伪随机，也就是有规则的随机。在进行随机时，随机算法的起源数字称为种子数(seed)，在种子数的基础上进行一定的变换，从而产生需要的随机数字。<br><br>相同种子数的Random对象，相同次数生成的随机数字是完全相同的。也就是说，两个种子数相同的Random对象，第一次生成的随机数字完全相同，第二次生成的随机数字也完全相同。这点在生成多个随机数字时需要特别注意。<br><br><a id="more"></a><br><br>下面介绍一下Random类的使用，以及如何生成指定区间的随机数组以及实现程序中要求的几率。<br><br>1、Random对象的生成<br><br>         Random类包含两个构造方法，下面依次进行介绍：<br><br>         a、public Random()<br><br>该构造方法使用一个和当前系统时间对应的相对时间有关的数字作为种子数，然后使用这个种子数构造Random对象。<br><br>         b、public Random(long seed)<br><br>该构造方法可以通过制定一个种子数进行创建。<br><br>示例代码：<br><br>Random r = new Random();<br><br>Random r1 = new Random(10);<br><br>再次强调：种子数只是随机算法的起源数字，和生成的随机数字的区间无关。<br><br>2、Random类中的常用方法<br><br>Random类中的方法比较简单，每个方法的功能也很容易理解。需要说明的是，Random类中各方法生成的随机数字都是均匀分布的，也就是说区间内部的数字生成的几率是均等的。下面对这些方法做一下基本的介绍：<br><br>a、public boolean nextBoolean()<br><br>该方法的作用是生成一个随机的boolean值，生成true和false的值几率相等，也就是都是50%的几率。<br><br>b、public double nextDouble()<br><br>该方法的作用是生成一个随机的double值，数值介于[0,1.0)之间。<br><br>c、public int nextInt()<br><br>该方法的作用是生成一个随机的int值，该值介于int的区间，也就是-231到231-1之间。<br><br>如果需要生成指定区间的int值，则需要进行一定的数学变换，具体可以参看下面的使用示例中的代码。<br><br>d、public int nextInt(int n)<br><br>该方法的作用是生成一个随机的int值，该值介于[0,n)的区间，也就是0到n之间的随机int值，包含0而不包含n。<br><br>如果想生成指定区间的int值，也需要进行一定的数学变换，具体可以参看下面的使用示例中的代码。<br><br>e、public void setSeed(long seed)<br><br>该方法的作用是重新设置Random对象中的种子数。设置完种子数以后的Random对象和相同种子数使用new关键字创建出的Random对象相同。<br><br>3、Random类使用示例<br><br>使用Random类，一般是生成指定区间的随机数字，下面就一一介绍如何生成对应区间的随机数字。以下生成随机数的代码均使用以下Random对象r进行生成：<br><br>Random r = new Random();<br><br>a、生成[0,1.0)区间的小数<br><br>                   double d1 = r.nextDouble();<br><br>直接使用nextDouble方法获得。<br><br>b、生成[0,5.0)区间的小数<br><br>double d2 = r.nextDouble() <em> 5;<br><br>因为nextDouble方法生成的数字区间是[0,1.0)，将该区间扩大5倍即是要求的区间。<br><br>同理，生成[0,d)区间的随机小数，d为任意正的小数，则只需要将nextDouble方法的返回值乘以d即可。<br><br>c、生成[1,2.5)区间的小数<br><br>       double d3 = r.nextDouble() </em> 1.5 + 1;<br><br>生成[1,2.5)区间的随机小数，则只需要首先生成[0,1.5)区间的随机数字，然后将生成的随机数区间加1即可。<br><br>同理，生成任意非从0开始的小数区间[d1,d2)范围的随机数字(其中d1不等于0)，则只需要首先生成[0,d2-d1)区间的随机数字，然后将生成的随机数字区间加上d1即可。<br><br>d、生成任意整数<br><br>int n1 = r.nextInt();<br><br>直接使用nextInt方法即可。<br><br>e、生成[0,10)区间的整数<br><br>int n2 = r.nextInt(10);<br><br>n2 = Math.abs(r.nextInt() % 10);<br><br>以上两行代码均可生成[0,10)区间的整数。<br><br>第一种实现使用Random类中的nextInt(int n)方法直接实现。<br><br>第二种实现中，首先调用nextInt()方法生成一个任意的int数字，该数字和10取余以后生成的数字区间为(-10,10)，然后再对该区间求绝对值，则得到的区间就是[0,10)了。<br><br>同理，生成任意[0,n)区间的随机整数，都可以使用如下代码：<br><br>int n2 = r.nextInt(n);<br><br>n2 = Math.abs(r.nextInt() % n);<br><br>f、生成[0,10]区间的整数<br><br>int n3 = r.nextInt(11);<br><br>n3 = Math.abs(r.nextInt() % 11);<br><br>相对于整数区间，[0,10]区间和[0,11)区间等价，所以即生成[0,11)区间的整数。<br><br>g、生成[-3,15)区间的整数<br><br>int n4 = r.nextInt(18) - 3;<br><br>n4 = Math.abs(r.nextInt() % 18) - 3;<br><br>生成非从0开始区间的随机整数，可以参看上面非从0开始的小数区间实现原理的说明。<br><br>h、几率实现<br><br>按照一定的几率实现程序逻辑也是随机处理可以解决的一个问题。下面以一个简单的示例演示如何使用随机数字实现几率的逻辑。<br><br>在前面的方法介绍中，nextInt(int n)方法中生成的数字是均匀的，也就是说该区间内部的每个数字生成的几率是相同的。那么如果生成一个[0,100)区间的随机整数，则每个数字生成的几率应该是相同的，而且由于该区间中总计有100个整数，所以每个数字的几率都是1%。按照这个理论，可以实现程序中的几率问题。<br><br>示例：随机生成一个整数，该整数以55%的几率生成1，以40%的几率生成2，以5%的几率生成3。实现的代码如下：<br><br>int n5 = r.nextInt(100);<br><br>int m; //结果数字<br><br>if(n5 &lt; 55){ //55个数字的区间，55%的几率<br><br>m = 1;<br><br>}else if(n5 &lt; 95){//[55,95)，40个数字的区间，40%的几率<br><br>m = 2;<br><br>}else{<br><br>m = 3;<br><br>}<br><br>因为每个数字的几率都是1%，则任意55个数字的区间的几率就是55%，为了代码方便书写，这里使用[0,55)区间的所有整数，后续的原理一样。<br><br>当然，这里的代码可以简化，因为几率都是5%的倍数，所以只要以5%为基础来控制几率即可，下面是简化的代码实现：<br><br>         int n6 = r.nextInt(20);<br><br>              int m1;<br><br>              if(n6 &lt; 11){<br><br>                       m1 = 1;<br><br>              }else if(n6 &lt; 19){<br><br>                       m1= 2;<br><br>              }else{<br><br>                       m1 = 3;<br><br>              }<br><br>     在程序内部，几率的逻辑就可以按照上面的说明进行实现。<br><br>4、其它问题<br><br>a、相同种子数Random对象问题<br><br>前面介绍过，相同种子数的Random对象，相同次数生成的随机数字是完全相同的，下面是测试的代码：<br><br>                            Random r1 = new Random(10);<br><br>                            Random r2 = new Random(10);<br><br>                            for(int i = 0;i &lt; 2;i++){<br><br>                                     System.out.println(r1.nextInt());<br><br>                                     System.out.println(r2.nextInt());<br><br>                            }<br><br>在该代码中，对象r1和r2使用的种子数都是10，则这两个对象相同次数生成的随机数是完全相同的。<br><br>如果想避免出现随机数字相同的情况，则需要注意，无论项目中需要生成多少个随机数字，都只使用一个Random对象即可。<br><br>b、关于Math类中的random方法<br><br>其实在Math类中也有一个random方法，该random方法的工作是生成一个[0,1.0)区间的随机小数。<br><br>通过阅读Math类的源代码可以发现，Math类中的random方法就是直接调用Random类中的nextDouble方法实现的。<br><br>只是random方法的调用比较简单，所以很多程序员都习惯使用Math类的random方法来生成随机数字。<br><br></div><br><div id="MySignature"></div><br><div></div><br><div id="blog_post_info_block"></div><br></div>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/JAVA/">JAVA</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2013/04/美利坚的惬意生活/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">美利坚的惬意生活</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2013/03/我的Hackintosh终于有声音了/">
+                <span class="level-item">我的Hackintosh终于有声音了</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    <img class="image is-128x128 has-mb-6" src="/images/myAvater.png" alt="Owen Xu">
+                    
+                    <p class="is-size-4 is-block">
+                        Owen Xu
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Chasing dream is damn working hard.
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Mountain View, CA</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        23
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        5
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/owenxu10">
+                Follow me on Github</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Linkedin" href="https://www.linkedin.com/in/junshengxu/">
+                
+                <i class="fab fa-linkedin"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Facebook" href="https://www.facebook.com/Owen.Xu.Junsheng">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Instagram" href="https://www.instagram.com/xjs0229/">
+                
+                <i class="fab fa-instagram"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Weibo" href="https://www.weibo.com/rondoxuxu">
+                
+                <i class="fab fa-weibo"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/CMU/" style="font-size: 10px;">CMU</a> <a href="/tags/Dream/" style="font-size: 13.33px;">Dream</a> <a href="/tags/Hackintosh/" style="font-size: 10px;">Hackintosh</a> <a href="/tags/IOS/" style="font-size: 13.33px;">IOS</a> <a href="/tags/Intro/" style="font-size: 13.33px;">Intro</a> <a href="/tags/JAVA/" style="font-size: 10px;">JAVA</a> <a href="/tags/Kettering/" style="font-size: 13.33px;">Kettering</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Love/" style="font-size: 10px;">Love</a> <a href="/tags/SAP/" style="font-size: 13.33px;">SAP</a> <a href="/tags/Vacation/" style="font-size: 16.67px;">Vacation</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a>
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CMU/">
+                        <span class="tag">CMU</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Dream/">
+                        <span class="tag">Dream</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hackintosh/">
+                        <span class="tag">Hackintosh</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IOS/">
+                        <span class="tag">IOS</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Intro/">
+                        <span class="tag">Intro</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JAVA/">
+                        <span class="tag">JAVA</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kettering/">
+                        <span class="tag">Kettering</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LeetCode/">
+                        <span class="tag">LeetCode</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Love/">
+                        <span class="tag">Love</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SAP/">
+                        <span class="tag">SAP</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vacation/">
+                        <span class="tag">Vacation</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Wordpress/">
+                        <span class="tag">Wordpress</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2017-05-05T16:13:22.000Z">05-06-2017</time></div>
+                    <a href="/2017/05/Leetcode-48/" class="has-link-black-ter is-size-6">Leetcode-48</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/About-Study/">About Study</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2017-04-27T03:38:01.000Z">04-27-2017</time></div>
+                    <a href="/2017/04/申请总结/" class="has-link-black-ter is-size-6">申请总结</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/About-Study/">About Study</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2017-01-28T17:13:45.000Z">01-29-2017</time></div>
+                    <a href="/2017/01/2017/" class="has-link-black-ter is-size-6">2017 Happy the year of Rooster</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/About-Life/">About Life</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-04-19T05:13:06.000Z">04-19-2016</time></div>
+                    <a href="/2016/04/Draymond/" class="has-link-black-ter is-size-6">Draymond man</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/About-Study/">About Study</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-04-19T05:08:49.000Z">04-19-2016</time></div>
+                    <a href="/2016/04/Thailand/" class="has-link-black-ter is-size-6">情人节出发的旅行</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/About-Life/">About Life</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/About-Life/">
+            <span class="level-start">
+                <span class="level-item">About Life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/About-Study/">
+            <span class="level-start">
+                <span class="level-item">About Study</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/About-U-S-A/">
+            <span class="level-start">
+                <span class="level-item">About U.S.A</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/About-Work/">
+            <span class="level-start">
+                <span class="level-item">About Work</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Misc/">
+            <span class="level-start">
+                <span class="level-item">Misc</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2017-05-05T16:13:22.000Z">05-06-2017</time></div>
+                    <a href="/2017/05/Leetcode-48/" class="has-link-black-ter is-size-6">Leetcode-48</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/About-Study/">About Study</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2017-04-27T03:38:01.000Z">04-27-2017</time></div>
+                    <a href="/2017/04/申请总结/" class="has-link-black-ter is-size-6">申请总结</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/About-Study/">About Study</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2017-01-28T17:13:45.000Z">01-29-2017</time></div>
+                    <a href="/2017/01/2017/" class="has-link-black-ter is-size-6">2017 Happy the year of Rooster</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/About-Life/">About Life</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-04-19T05:13:06.000Z">04-19-2016</time></div>
+                    <a href="/2016/04/Draymond/" class="has-link-black-ter is-size-6">Draymond man</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/About-Study/">About Study</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2016-04-19T05:08:49.000Z">04-19-2016</time></div>
+                    <a href="/2016/04/Thailand/" class="has-link-black-ter is-size-6">情人节出发的旅行</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/About-Life/">About Life</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/About-Life/">
+            <span class="level-start">
+                <span class="level-item">About Life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/About-Study/">
+            <span class="level-start">
+                <span class="level-item">About Study</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/About-U-S-A/">
+            <span class="level-start">
+                <span class="level-item">About U.S.A</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/About-Work/">
+            <span class="level-start">
+                <span class="level-item">About Work</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Misc/">
+            <span class="level-start">
+                <span class="level-item">Misc</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+<!--                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/myLogo.png" alt="JAVA的Random类" height="28">
+                
+                </a>
+                -->
+                <p class="is-size-7">
+                &copy; 2019 Owen Xu&nbsp;
+                </p>
+                <p class="is-size-7"> Opinions expressed on this blog are my own. All Rights Reserved. </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {matchFontHeight: false},
+        SVG: {matchFontHeight: false},
+        CommonHTML: {matchFontHeight: false}
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
