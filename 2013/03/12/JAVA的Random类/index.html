@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>JAVA的Random类 - 崇山俊岭</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="崇山俊岭"><meta name="msapplication-TileImage" content="/img/myLogo.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="崇山俊岭"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Random类 (java.util)   Random类中实现的随机算法是伪随机，也就是有规则的随机。在进行随机时，随机算法的起源数字称为种子数(seed)，在种子数的基础上进行一定的变换，从而产生需要的随机数字。 相同种子数的Random对象，相同次数生成的随机数字是完全相同的。也就是说，两个种子数相同的Random对象，第一次生成的随机数字完全相同，第二次生成的随机数字也完全相同。这点在生成"><meta property="og:type" content="blog"><meta property="og:title" content="JAVA的Random类"><meta property="og:url" content="http://owenxu10.github.io/2013/03/12/JAVA%E7%9A%84Random%E7%B1%BB/"><meta property="og:site_name" content="崇山俊岭"><meta property="og:description" content="Random类 (java.util)   Random类中实现的随机算法是伪随机，也就是有规则的随机。在进行随机时，随机算法的起源数字称为种子数(seed)，在种子数的基础上进行一定的变换，从而产生需要的随机数字。 相同种子数的Random对象，相同次数生成的随机数字是完全相同的。也就是说，两个种子数相同的Random对象，第一次生成的随机数字完全相同，第二次生成的随机数字也完全相同。这点在生成"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://owenxu10.github.io/img/og_image.png"><meta property="article:published_time" content="2013-03-13T06:48:58.000Z"><meta property="article:modified_time" content="2022-05-20T18:40:51.235Z"><meta property="article:author" content="Owen Xu"><meta property="article:tag" content="JAVA"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://owenxu10.github.io/2013/03/12/JAVA%E7%9A%84Random%E7%B1%BB/"},"headline":"JAVA的Random类","image":["http://owenxu10.github.io/img/og_image.png"],"datePublished":"2013-03-13T06:48:58.000Z","dateModified":"2022-05-20T18:40:51.235Z","author":{"@type":"Person","name":"Owen Xu"},"publisher":{"@type":"Organization","name":"崇山俊岭","logo":{"@type":"ImageObject","url":"http://owenxu10.github.io/img/myLogo.png"}},"description":"Random类 (java.util)   Random类中实现的随机算法是伪随机，也就是有规则的随机。在进行随机时，随机算法的起源数字称为种子数(seed)，在种子数的基础上进行一定的变换，从而产生需要的随机数字。 相同种子数的Random对象，相同次数生成的随机数字是完全相同的。也就是说，两个种子数相同的Random对象，第一次生成的随机数字完全相同，第二次生成的随机数字也完全相同。这点在生成"}</script><link rel="canonical" href="http://owenxu10.github.io/2013/03/12/JAVA%E7%9A%84Random%E7%B1%BB/"><link rel="icon" href="/img/myLogo.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-132741676-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-132741676-1');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 6.2.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/myLogo.png" alt="崇山俊岭" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2013-03-13T06:48:58.000Z" title="3/12/2013, 11:48:58 PM">2013-03-12</time></span><span class="level-item"><a class="link-muted" href="/categories/About-Study/">About Study</a></span><span class="level-item">14 minutes read (About 2095 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">JAVA的Random类</h1><div class="content"><h1 id="Random类-java-util"><a href="#Random类-java-util" class="headerlink" title="Random类 (java.util)"></a>Random类 (java.util)</h1><div>
+<div id="cnblogs_post_body">
+
+<p>Random类中实现的随机算法是伪随机，也就是有规则的随机。在进行随机时，随机算法的起源数字称为种子数(seed)，在种子数的基础上进行一定的变换，从而产生需要的随机数字。</p>
+<p>相同种子数的Random对象，相同次数生成的随机数字是完全相同的。也就是说，两个种子数相同的Random对象，第一次生成的随机数字完全相同，第二次生成的随机数字也完全相同。这点在生成多个随机数字时需要特别注意。</p>
+<span id="more"></span>
+
+<p>下面介绍一下Random类的使用，以及如何生成指定区间的随机数组以及实现程序中要求的几率。</p>
+<p>1、Random对象的生成</p>
+<p>         Random类包含两个构造方法，下面依次进行介绍：</p>
+<p>         a、public Random()</p>
+<p>该构造方法使用一个和当前系统时间对应的相对时间有关的数字作为种子数，然后使用这个种子数构造Random对象。</p>
+<p>         b、public Random(long seed)</p>
+<p>该构造方法可以通过制定一个种子数进行创建。</p>
+<p>示例代码：</p>
+<p>Random r &#x3D; new Random();</p>
+<p>Random r1 &#x3D; new Random(10);</p>
+<p>再次强调：种子数只是随机算法的起源数字，和生成的随机数字的区间无关。</p>
+<p>2、Random类中的常用方法</p>
+<p>Random类中的方法比较简单，每个方法的功能也很容易理解。需要说明的是，Random类中各方法生成的随机数字都是均匀分布的，也就是说区间内部的数字生成的几率是均等的。下面对这些方法做一下基本的介绍：</p>
+<p>a、public boolean nextBoolean()</p>
+<p>该方法的作用是生成一个随机的boolean值，生成true和false的值几率相等，也就是都是50%的几率。</p>
+<p>b、public double nextDouble()</p>
+<p>该方法的作用是生成一个随机的double值，数值介于[0,1.0)之间。</p>
+<p>c、public int nextInt()</p>
+<p>该方法的作用是生成一个随机的int值，该值介于int的区间，也就是-231到231-1之间。</p>
+<p>如果需要生成指定区间的int值，则需要进行一定的数学变换，具体可以参看下面的使用示例中的代码。</p>
+<p>d、public int nextInt(int n)</p>
+<p>该方法的作用是生成一个随机的int值，该值介于[0,n)的区间，也就是0到n之间的随机int值，包含0而不包含n。</p>
+<p>如果想生成指定区间的int值，也需要进行一定的数学变换，具体可以参看下面的使用示例中的代码。</p>
+<p>e、public void setSeed(long seed)</p>
+<p>该方法的作用是重新设置Random对象中的种子数。设置完种子数以后的Random对象和相同种子数使用new关键字创建出的Random对象相同。</p>
+<p>3、Random类使用示例</p>
+<p>使用Random类，一般是生成指定区间的随机数字，下面就一一介绍如何生成对应区间的随机数字。以下生成随机数的代码均使用以下Random对象r进行生成：</p>
+<p>Random r &#x3D; new Random();</p>
+<p>a、生成[0,1.0)区间的小数</p>
+<p>                   double d1 &#x3D; r.nextDouble();</p>
+<p>直接使用nextDouble方法获得。</p>
+<p>b、生成[0,5.0)区间的小数</p>
+<p>double d2 &#x3D; r.nextDouble() * 5;</p>
+<p>因为nextDouble方法生成的数字区间是[0,1.0)，将该区间扩大5倍即是要求的区间。</p>
+<p>同理，生成[0,d)区间的随机小数，d为任意正的小数，则只需要将nextDouble方法的返回值乘以d即可。</p>
+<p>c、生成[1,2.5)区间的小数</p>
+<p>       double d3 &#x3D; r.nextDouble() * 1.5 + 1;</p>
+<p>生成[1,2.5)区间的随机小数，则只需要首先生成[0,1.5)区间的随机数字，然后将生成的随机数区间加1即可。</p>
+<p>同理，生成任意非从0开始的小数区间[d1,d2)范围的随机数字(其中d1不等于0)，则只需要首先生成[0,d2-d1)区间的随机数字，然后将生成的随机数字区间加上d1即可。</p>
+<p>d、生成任意整数</p>
+<p>int n1 &#x3D; r.nextInt();</p>
+<p>直接使用nextInt方法即可。</p>
+<p>e、生成[0,10)区间的整数</p>
+<p>int n2 &#x3D; r.nextInt(10);</p>
+<p>n2 &#x3D; Math.abs(r.nextInt() % 10);</p>
+<p>以上两行代码均可生成[0,10)区间的整数。</p>
+<p>第一种实现使用Random类中的nextInt(int n)方法直接实现。</p>
+<p>第二种实现中，首先调用nextInt()方法生成一个任意的int数字，该数字和10取余以后生成的数字区间为(-10,10)，然后再对该区间求绝对值，则得到的区间就是[0,10)了。</p>
+<p>同理，生成任意[0,n)区间的随机整数，都可以使用如下代码：</p>
+<p>int n2 &#x3D; r.nextInt(n);</p>
+<p>n2 &#x3D; Math.abs(r.nextInt() % n);</p>
+<p>f、生成[0,10]区间的整数</p>
+<p>int n3 &#x3D; r.nextInt(11);</p>
+<p>n3 &#x3D; Math.abs(r.nextInt() % 11);</p>
+<p>相对于整数区间，[0,10]区间和[0,11)区间等价，所以即生成[0,11)区间的整数。</p>
+<p>g、生成[-3,15)区间的整数</p>
+<p>int n4 &#x3D; r.nextInt(18) - 3;</p>
+<p>n4 &#x3D; Math.abs(r.nextInt() % 18) - 3;</p>
+<p>生成非从0开始区间的随机整数，可以参看上面非从0开始的小数区间实现原理的说明。</p>
+<p>h、几率实现</p>
+<p>按照一定的几率实现程序逻辑也是随机处理可以解决的一个问题。下面以一个简单的示例演示如何使用随机数字实现几率的逻辑。</p>
+<p>在前面的方法介绍中，nextInt(int n)方法中生成的数字是均匀的，也就是说该区间内部的每个数字生成的几率是相同的。那么如果生成一个[0,100)区间的随机整数，则每个数字生成的几率应该是相同的，而且由于该区间中总计有100个整数，所以每个数字的几率都是1%。按照这个理论，可以实现程序中的几率问题。</p>
+<p>示例：随机生成一个整数，该整数以55%的几率生成1，以40%的几率生成2，以5%的几率生成3。实现的代码如下：</p>
+<p>int n5 &#x3D; r.nextInt(100);</p>
+<p>int m; &#x2F;&#x2F;结果数字</p>
+<p>if(n5 &lt; 55){ &#x2F;&#x2F;55个数字的区间，55%的几率</p>
+<p>m &#x3D; 1;</p>
+<p>}else if(n5 &lt; 95){&#x2F;&#x2F;[55,95)，40个数字的区间，40%的几率</p>
+<p>m &#x3D; 2;</p>
+<p>}else{</p>
+<p>m &#x3D; 3;</p>
+<p>}</p>
+<p>因为每个数字的几率都是1%，则任意55个数字的区间的几率就是55%，为了代码方便书写，这里使用[0,55)区间的所有整数，后续的原理一样。</p>
+<p>当然，这里的代码可以简化，因为几率都是5%的倍数，所以只要以5%为基础来控制几率即可，下面是简化的代码实现：</p>
+<p>         int n6 &#x3D; r.nextInt(20);</p>
+<p>              int m1;</p>
+<p>              if(n6 &lt; 11){</p>
+<p>                       m1 &#x3D; 1;</p>
+<p>              }else if(n6 &lt; 19){</p>
+<p>                       m1&#x3D; 2;</p>
+<p>              }else{</p>
+<p>                       m1 &#x3D; 3;</p>
+<p>              }</p>
+<p>     在程序内部，几率的逻辑就可以按照上面的说明进行实现。</p>
+<p>4、其它问题</p>
+<p>a、相同种子数Random对象问题</p>
+<p>前面介绍过，相同种子数的Random对象，相同次数生成的随机数字是完全相同的，下面是测试的代码：</p>
+<p>                            Random r1 &#x3D; new Random(10);</p>
+<p>                            Random r2 &#x3D; new Random(10);</p>
+<p>                            for(int i &#x3D; 0;i &lt; 2;i++){</p>
+<p>                                     System.out.println(r1.nextInt());</p>
+<p>                                     System.out.println(r2.nextInt());</p>
+<p>                            }</p>
+<p>在该代码中，对象r1和r2使用的种子数都是10，则这两个对象相同次数生成的随机数是完全相同的。</p>
+<p>如果想避免出现随机数字相同的情况，则需要注意，无论项目中需要生成多少个随机数字，都只使用一个Random对象即可。</p>
+<p>b、关于Math类中的random方法</p>
+<p>其实在Math类中也有一个random方法，该random方法的工作是生成一个[0,1.0)区间的随机小数。</p>
+<p>通过阅读Math类的源代码可以发现，Math类中的random方法就是直接调用Random类中的nextDouble方法实现的。</p>
+<p>只是random方法的调用比较简单，所以很多程序员都习惯使用Math类的random方法来生成随机数字。</p>
+</div>
+<div id="MySignature"></div>
+<div></div>
+<div id="blog_post_info_block"></div>
+</div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/JAVA/">JAVA</a></div><div class="sharethis-inline-share-buttons"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-62871f5cd1b4eb4d" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2013/04/03/%E7%BE%8E%E5%88%A9%E5%9D%9A%E7%9A%84%E6%83%AC%E6%84%8F%E7%94%9F%E6%B4%BB/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">美利坚的惬意生活</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2013/03/07/%E6%88%91%E7%9A%84Hackintosh%E7%BB%88%E4%BA%8E%E6%9C%89%E5%A3%B0%E9%9F%B3%E4%BA%86/"><span class="level-item">我的Hackintosh终于有声音了</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'http://owenxu10.github.io/2013/03/12/JAVA%E7%9A%84Random%E7%B1%BB/';
+            this.page.identifier = '2013/03/12/JAVA的Random类/';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'owenxu10' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://www.gravatar.com/avatar/5eac82dba471630ab849e52a74d91ebf?s=128" alt="Owen Xu"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Owen Xu</p><p class="is-size-6 is-block">Chasing dream is damn working hard.</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Mountain View, CA</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">24</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">15</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/owenxu10" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Linkedin" href="https://www.linkedin.com/in/junshengxu/"><i class="fab fa-linkedin"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Instagram" href="https://www.instagram.com/xjs0229/"><i class="fab fa-instagram"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Weibo" href="https://weibo.com/u/1639072151"><i class="fab fa-weibo"></i></a></div></div></div><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/About-Life/"><span class="level-start"><span class="level-item">About Life</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/About-Study/"><span class="level-start"><span class="level-item">About Study</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/categories/About-U-S-A/"><span class="level-start"><span class="level-item">About U.S.A</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/About-Work/"><span class="level-start"><span class="level-item">About Work</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Misc/"><span class="level-start"><span class="level-item">Misc</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-01-19T08:00:00.000Z">2019-01-19</time></p><p class="title"><a href="/2019/01/19/%E8%B0%B7%E6%AD%8C%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">谷歌面试总结</a></p><p class="categories"><a href="/categories/About-Study/">About Study</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2017-05-06T07:13:22.000Z">2017-05-06</time></p><p class="title"><a href="/2017/05/06/Leetcode-48/">Leetcode-48</a></p><p class="categories"><a href="/categories/About-Study/">About Study</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2017-04-27T18:38:01.000Z">2017-04-27</time></p><p class="title"><a href="/2017/04/27/%E7%94%B3%E8%AF%B7%E6%80%BB%E7%BB%93/">申请总结</a></p><p class="categories"><a href="/categories/About-Study/">About Study</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2017-01-29T09:13:45.000Z">2017-01-29</time></p><p class="title"><a href="/2017/01/29/2017/">2017 Happy the year of Rooster</a></p><p class="categories"><a href="/categories/About-Life/">About Life</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2016-04-19T20:13:06.000Z">2016-04-19</time></p><p class="title"><a href="/2016/04/19/Draymond/">Draymond man</a></p><p class="categories"><a href="/categories/About-Study/">About Study</a></p></div></article></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Algorithm/"><span class="tag">Algorithm</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CMU/"><span class="tag">CMU</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/DREAM/"><span class="tag">DREAM</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Dream/"><span class="tag">Dream</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/GOOGLE/"><span class="tag">GOOGLE</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Hackintosh/"><span class="tag">Hackintosh</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/IOS/"><span class="tag">IOS</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Intro/"><span class="tag">Intro</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JAVA/"><span class="tag">JAVA</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Kettering/"><span class="tag">Kettering</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LeetCode/"><span class="tag">LeetCode</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Love/"><span class="tag">Love</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SAP/"><span class="tag">SAP</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Vacation/"><span class="tag">Vacation</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Wordpress/"><span class="tag">Wordpress</span><span class="tag">1</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/myLogo.png" alt="崇山俊岭" height="28"></a><p class="is-size-7"><span>&copy; 2022 Owen Xu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
